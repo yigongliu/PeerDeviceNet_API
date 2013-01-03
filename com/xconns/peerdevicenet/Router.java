@@ -169,12 +169,12 @@ public class Router {
 	public static final String NET_ADDR = "NET_ADDR";
 	public static final String NET_INTF_MCAST = "NET_INTF_MCAST";
 
-	public static final String NET_TYPES = "NET_TYPE";
-	public static final String NET_NAMES = "NET_NAME";
-	public static final String NET_PASSES = "NET_PASS";
-	public static final String NET_INFOS = "NET_INFO";
-	public static final String NET_INTF_NAMES = "NET_INTF_NAME";
-	public static final String NET_ADDRS = "NET_ADDR";
+	public static final String NET_TYPES = "NET_TYPES";
+	public static final String NET_NAMES = "NET_NAMES";
+	public static final String NET_PASSES = "NET_PASSES";
+	public static final String NET_INFOS = "NET_INFOS";
+	public static final String NET_INTF_NAMES = "NET_INTF_NAMES";
+	public static final String NET_ADDRS = "NET_ADDRS";
 
 	//
 	public static final String TIMEOUT = "TIMEOUT";
@@ -240,6 +240,16 @@ public class Router {
 			return "GET_DEVICE_INFO";
 		case MsgId.GET_CONNECTED_PEERS:
 			return "GET_CONNECTED_PEERS";
+		case MsgId.GET_NETWORKS:
+			return "GET_NETWORKS";
+		case MsgId.GET_ACTIVE_NETWORK:
+			return "GET_ACTIVE_NETWORK";
+		case MsgId.ACTIVATE_NETWORK:
+			return "ACTIVATE_NETWORK";
+		case MsgId.NETWORK_CONNECTED:
+			return "ETWORK_CONNECTED";
+		case MsgId.NETWORK_DISCONNECTED:
+			return "ETWORK_DISCONNECTED";
 		case MsgId.REGISTER_RECEIVER:
 			return "REGISTER_RECEIVER";
 		case MsgId.UNREGISTER_RECEIVER:

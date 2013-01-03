@@ -52,7 +52,7 @@ public class DeviceInfo implements Parcelable {
 	
 	@Override
 	public String toString() {
-		return String.format("%s (%s)", name, addr);
+		return String.format("%s (%s, %s)", name, addr, port);
 	}
 	
 	public int describeContents() {
