@@ -8,11 +8,12 @@ public class NetInfo implements Parcelable {
 	public final static int NoNet = -1;
 	public final static int WiFi = 0;
 	public final static int WiFiDirect = 1;
-	public final static int Bluetooth = 2;
-	public final static int Mobile = 3;
-	public final static int Cloud = 4;
-	public final static int Other = 5;
-	public final static int NET_TYPES = 6;
+	public final static int WiFiHotspot = 2;
+	public final static int Bluetooth = 3;
+	public final static int Mobile = 4;
+	public final static int Cloud = 5;
+	public final static int Other = 6;
+	public final static int NET_TYPES = 7;
 	
 	public final static String NetTypeName(int t) {
 		switch (t) {
@@ -22,6 +23,8 @@ public class NetInfo implements Parcelable {
 			return "Wi-Fi";
 		case WiFiDirect:
 			return "Wi-Fi Direct";
+		case WiFiHotspot:
+			return "Wi-Fi Hotspot";
 		case Bluetooth:
 			return "Bluetooth";
 		case Mobile:
@@ -69,7 +72,7 @@ public class NetInfo implements Parcelable {
 	
 	@Override
 	public String toString() {
-		return String.format("type:%s, name:%s, addr:%s", type, name, addr);
+		return String.format("type:%s, name:%s, pass:%s, intfName:%s, addr:%s, mcast:%b", type, name, pass, intfName, addr, mcast);
 	}
 
 	public int describeContents() {
