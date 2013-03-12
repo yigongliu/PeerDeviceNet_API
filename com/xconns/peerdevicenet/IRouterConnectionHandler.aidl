@@ -34,7 +34,7 @@ interface IRouterConnectionHandler {
 	oneway void onGetActiveNetwork(in NetInfo net);
 	oneway void onNetworkActivated(in NetInfo net);
 	
-	oneway void onSearchFoundDevice(in DeviceInfo device);
+	oneway void onSearchFoundDevice(in DeviceInfo device, boolean useSSL);
 	oneway void onSearchComplete();
 	
 	//---------- connection callbacks -------
@@ -42,7 +42,8 @@ interface IRouterConnectionHandler {
 	oneway void onConnectionFailed(in DeviceInfo device, int rejectCode);  
 	oneway void onConnected(in DeviceInfo device);
 	oneway void onDisconnected(in DeviceInfo device);
-	oneway void onSetDeviceInfo();
+	oneway void onSetConnectionInfo();
+	oneway void onGetConnectionInfo(String devName, boolean useSSL, int liveTime, int connTime, int searchTime);
 	oneway void onGetDeviceInfo(in DeviceInfo device);
 	oneway void onGetPeerDevices(in DeviceInfo[] devices);
 }

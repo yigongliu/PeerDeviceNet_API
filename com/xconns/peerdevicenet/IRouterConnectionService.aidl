@@ -48,8 +48,9 @@ interface IRouterConnectionService {
 	oneway void acceptConnection(int sessionId, in DeviceInfo peer);
 	oneway void denyConnection(int sessionId, in DeviceInfo peer, int rejectCode);
 	
-	//query api - get & set my device info
-	oneway void setDeviceInfo(int sessionId, in DeviceInfo device);
+	//query api - get & set my connection settings
+	oneway void setConnectionInfo(int sessionId, String devName, boolean useSSL, int liveTime, int connTime, int searchTime);
+	oneway void getConnectionInfo(int sessionId);
 	oneway void getDeviceInfo(int sessionId);
 	//get peer devices in the network
 	oneway void getPeerDevices(int sessionId);

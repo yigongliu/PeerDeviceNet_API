@@ -62,7 +62,8 @@ public class Router {
 	public static final String ACTION_PEER_LEAVE = "com.xconns.peerdevicenet.PEER_LEAVE";
 	public static final String ACTION_SEND_MSG = "com.xconns.peerdevicenet.SEND_MSG";
 	public static final String ACTION_RECV_MSG = "com.xconns.peerdevicenet.RECV_MSG";
-	public static final String ACTION_SET_DEVICE_INFO = "com.xconns.peerdevicenet.SET_DEVICE_INFO";
+	public static final String ACTION_SET_CONNECTION_INFO = "com.xconns.peerdevicenet.SET_CONNECTION_INFO";
+	public static final String ACTION_GET_CONNECTION_INFO = "com.xconns.peerdevicenet.GET_CONNECTION_INFO";
 	public static final String ACTION_GET_DEVICE_INFO = "com.xconns.peerdevicenet.GET_DEVICE_INFO";
 	public static final String ACTION_GET_CONNECTED_PEERS = "com.xconns.peerdevicenet.GET_CONNECTED_PEERS";
 	public static final String ACTION_GET_NETWORKS = "com.xconns.peerdevicenet.GET_NETWORKS";
@@ -114,9 +115,10 @@ public class Router {
 		public final static int RECV_MSG = -10510;
 		
 		//
-		public final static int SET_DEVICE_INFO = -10600;
-		public final static int GET_DEVICE_INFO = -10601;
-		public final static int GET_CONNECTED_PEERS = -10602;
+		public final static int SET_CONNECTION_INFO = -10600;
+		public final static int GET_CONNECTION_INFO = -10601;
+		public final static int GET_DEVICE_INFO = -10602;
+		public final static int GET_CONNECTED_PEERS = -10603;
 		
 		//
 		public static final int GET_NETWORKS = 10700;
@@ -178,6 +180,10 @@ public class Router {
 
 	//
 	public static final String TIMEOUT = "TIMEOUT";
+	public static final String LIVENESS_TIMEOUT = "LIVENESSTIMEOUT";
+	public static final String CONNECT_TIMEOUT = "CONNECT_TIMEOUT";
+	public static final String SEARCH_TIMEOUT = "SEARCH_TIMEOUT";
+	public static final String USE_SSL = "INTERNAL_WIFI_USE_SSL";
 	public static final String AUTHENTICATION_TOKEN = "AUTHENTICATION_TOKEN";
 	public static final String CONN_DENY_CODE = "CONNECTION_DENY_CODE";
 	//remote intent bundle keys
@@ -234,8 +240,10 @@ public class Router {
 			return "SEND_MSG";
 		case MsgId.RECV_MSG:
 			return "RECV_MSG";
-		case MsgId.SET_DEVICE_INFO:
-			return "SET_DEVICE_INFO";
+		case MsgId.SET_CONNECTION_INFO:
+			return "SET_CONNECTION_INFO";
+		case MsgId.GET_CONNECTION_INFO:
+			return "GET_CONNECTION_INFO";
 		case MsgId.GET_DEVICE_INFO:
 			return "GET_DEVICE_INFO";
 		case MsgId.GET_CONNECTED_PEERS:
