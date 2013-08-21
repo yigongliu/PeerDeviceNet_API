@@ -1,19 +1,17 @@
-/*************************************************************************
- * 
- * XCONNS CONFIDENTIAL
- * __________________
- * 
- *  2012 - 2013  XCONNS, LLC 
- *  All Rights Reserved.
- * 
- * NOTICE:  All information contained herein is, and remains
- * the property of XCONNS, LLC and its suppliers, if any.  
- * The intellectual and technical concepts contained herein are 
- * proprietary to XCONNS, LLC and its suppliers and may be covered 
- * by U.S. and Foreign Patents, patents in process, and are protected 
- * by trade secret or copyright law. Dissemination of this information
- * or reproduction of this material is strictly forbidden unless prior
- * written permission is obtained from XCONNS, LLC.
+/*
+ * Copyright (C) 2013 Yigong Liu, XCONNS, LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 package com.xconns.peerdevicenet;
@@ -27,23 +25,27 @@ package com.xconns.peerdevicenet;
  */
 public class Router {
 	//service startup intents
-	//for starting Connector service
+	//for starting router service
 	public static final String ACTION_SERVICE = "com.xconns.peerdevicenet.Service";
 	public static final String ACTION_CONNECTION_SERVICE = "com.xconns.peerdevicenet.ConnectionService";
 	public static final String ACTION_GROUP_SERVICE = "com.xconns.peerdevicenet.GroupService";
 	public static final String ACTION_MESSENGER_SERVICE = "com.xconns.peerdevicenet.Messenger";
+	//for starting conn mgr service
+	public static final String ACTION_CONNECTOR = "com.xconns.peerdevicenet.CONNECTOR";
+	public static final String ACTION_CONNECTION_MANAGEMENT = "com.xconns.peerdevicenet.CONNECTION_MANAGEMENT";
 	//for starting remote intent service
 	public static final String ACTION_REMOTE_INTENT_SERVICE = "com.xconns.peerdevicenet.RemoteIntentService";
-	//for starting conn mgr service
-	public static final String ACTION_PEER_DISCOVERY_SERVICE = "com.xconns.peerdevicenet.PeerDiscoveryService";
-	public static final String ACTION_CONNECTION_MANAGEMENT = "com.xconns.peerdevicenet.CONNECTION_MANAGEMENT";
-	public static final String ACTION_RESET_SERVICE = "com.xconns.peerdevicenet.RESET_SERVICE";
+
+	//life-cycle events
+	public static final String ACTION_ROUTER_STARTUP = "com.xconns.peerdevicenet.Startup";
+	public static final String ACTION_ROUTER_RESET = "com.xconns.peerdevicenet.Reset";
+	public static final String ACTION_ROUTER_SHUTDOWN = "com.xconns.peerdevicenet.Shutdown";
 
 	// intents for msg-passing msg ids
 	public static final String ACTION_ERROR = "com.xconns.peerdevicenet.ERROR";
-	public static final String ACTION_SHUTDOWN = "com.xconns.peerdevicenet.shutdown";
 	public static final String ACTION_START_SEARCH = "com.xconns.peerdevicenet.START_SEARCH";
 	public static final String ACTION_STOP_SEARCH = "com.xconns.peerdevicenet.STOP_SEARCH";
+	public static final String ACTION_SEARCH_START = "com.xconns.peerdevicenet.SEARCH_START";
 	public static final String ACTION_SEARCH_FOUND_DEVICE = "com.xconns.peerdevicenet.SEARCH_FOUND_DEVICE";
 	public static final String ACTION_SEARCH_COMPLETE = "com.xconns.peerdevicenet.SEARCH_COMPLETE";
 	public static final String ACTION_CONNECT = "com.xconns.peerdevicenet.CONNECT";
@@ -87,8 +89,9 @@ public class Router {
 		public final static int START_SEARCH = -10200;
 		public final static int STOP_SEARCH = -10201;
 		//state change
-		public final static int SEARCH_FOUND_DEVICE = -10210;
-		public final static int SEARCH_COMPLETE = -10211;
+		public final static int SEARCH_START = -10210;
+		public final static int SEARCH_FOUND_DEVICE = -10211;
+		public final static int SEARCH_COMPLETE = -10212;
 		
 		//cmds
 		public final static int CONNECT = -10300;
@@ -165,7 +168,9 @@ public class Router {
 	//keys for net info
 	public static final String NET_TYPE = "NET_TYPE";
 	public static final String NET_NAME = "NET_NAME";
+	public static final String NET_ENCRYPT = "NET_ENCRYPT";
 	public static final String NET_PASS = "NET_PASS";
+	public static final String NET_HIDDEN = "NET_HIDDEN";
 	public static final String NET_INFO = "NET_INFO";
 	public static final String NET_INTF_NAME = "NET_INTF_NAME";
 	public static final String NET_ADDR = "NET_ADDR";
@@ -173,7 +178,9 @@ public class Router {
 
 	public static final String NET_TYPES = "NET_TYPES";
 	public static final String NET_NAMES = "NET_NAMES";
+	public static final String NET_ENCRYPTS = "NET_ENCRYPTS";
 	public static final String NET_PASSES = "NET_PASSES";
+	public static final String NET_HIDDENS = "NET_HIDDENS";
 	public static final String NET_INFOS = "NET_INFOS";
 	public static final String NET_INTF_NAMES = "NET_INTF_NAMES";
 	public static final String NET_ADDRS = "NET_ADDRS";
@@ -183,7 +190,7 @@ public class Router {
 	public static final String LIVENESS_TIMEOUT = "LIVENESSTIMEOUT";
 	public static final String CONNECT_TIMEOUT = "CONNECT_TIMEOUT";
 	public static final String SEARCH_TIMEOUT = "SEARCH_TIMEOUT";
-	public static final String USE_SSL = "INTERNAL_WIFI_USE_SSL";
+	public static final String USE_SSL = "USE_SSL";
 	public static final String AUTHENTICATION_TOKEN = "AUTHENTICATION_TOKEN";
 	public static final String CONN_DENY_CODE = "CONNECTION_DENY_CODE";
 	//remote intent bundle keys
@@ -204,6 +211,8 @@ public class Router {
 			return "START_SEARCH";
 		case MsgId.STOP_SEARCH:
 			return "STOP_SEARCH";
+		case MsgId.SEARCH_START:
+			return "SEARCH_START";
 		case MsgId.SEARCH_FOUND_DEVICE:
 			return "SEARCH_FOUND_DEVICE";
 		case MsgId.SEARCH_COMPLETE:
